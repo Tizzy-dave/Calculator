@@ -1,1 +1,106 @@
-https://codepen.io/Kelechi-Ajuzie/pen/qBwGVzp
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="calculator">
+        <input type="text" id="output" readonly>
+        <table>
+            <tr>
+                <td><button onclick="clearOutput()">C</button></td>
+                <td><button onclick="appendSymbol('%')">%</button></td>
+                <td><button onclick="appendSymbol('/')">/</button></td>
+                <td><button onclick="appendSymbol('*')">x</button></td>
+            </tr>
+            <tr>
+                <td><button onclick="appendSymbol('7')">7</button></td>
+                <td><button onclick="appendSymbol('8')">8</button></td>
+                <td><button onclick="appendSymbol('9')">9</button></td>
+                <td><button onclick="appendSymbol('-')">-</button></td>
+            </tr>
+            <tr>
+                <td><button onclick="appendSymbol('4')">4</button></td>
+                <td><button onclick="appendSymbol('5')">5</button></td>
+                <td><button onclick="appendSymbol('6')">6</button></td>
+                <td><button onclick="appendSymbol('+')">+</button></td>
+            </tr>
+            <tr>
+                <td><button onclick="appendSymbol('1')">1</button></td>
+                <td><button onclick="appendSymbol('2')">2</button></td>
+                <td><button onclick="appendSymbol('3')">3</button></td>
+                <td rowspan="2"><button class="equals" onclick="calculate()">=</button></td>
+            </tr>
+            <tr>
+                <td colspan="2"><button onclick="appendSymbol('0')">0</button></td>
+                <td><button onclick="appendSymbol('.')">.</button></td>
+            </tr>
+        </table>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+
+let output = document.getElementById('output');
+
+function appendSymbol(symbol) {
+    output.value += symbol;
+}
+
+function clearOutput() {
+    output.value = '';
+}
+
+function calculate() {
+    try {
+        output.value = eval(output.value);
+    } catch (error) {
+        output.value = 'Error';
+    }
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.calculator {
+    text-align: center;
+}
+
+input[type="text"] {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 24px;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+button {
+    width: 100%;
+    padding: 20px;
+    font-size: 20px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #f0f0f0;
+}
+
+.equals {
+    height: 100%;
+    font-size: 36px;
+    background-color: #f0f0f0;
+}
+
